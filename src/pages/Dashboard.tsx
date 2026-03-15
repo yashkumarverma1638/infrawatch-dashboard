@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMonitors } from "../features/monitors/monitorSlice";
 import API from "../api/api";
 import type { RootState, AppDispatch } from "../app/store";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
   const { monitors, loading } = useSelector(
     (state: RootState) => state.monitors,
   );
@@ -61,7 +64,18 @@ function Dashboard() {
 
         <tbody>
           {monitors.map((item: any) => (
-            <tr key={item.id}>
+            <tr
+              key={item.id}
+              onClick={() => navigate(`/monitor/${item.id}`)}
+              style={{
+                cursor: "pointer",
+                transition: "background 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#f5f5f5")
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.background = "white")}
+            >
               <td>{item.url}</td>
 
               <td>{item.logs?.[0]?.status === "UP" ? "🟢 UP" : "🔴 DOWN"}</td>
