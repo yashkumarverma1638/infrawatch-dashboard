@@ -125,8 +125,8 @@ function Dashboard() {
       setError("");
 
       dispatch(fetchMonitors());
-    } catch {
-      setError("Failed to add monitor");
+    } catch (err: any) {
+      toast.error(err.response?.data?.error);
     }
   };
   const deleteMonitor = async (id: number) => {

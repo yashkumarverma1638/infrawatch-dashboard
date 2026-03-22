@@ -20,6 +20,9 @@ function Navbar() {
     >
       {/* Left */}
       <Typography sx={{ fontWeight: 200 }}>Dashboard</Typography>
+      <Typography style={{ fontSize: "12px", color: "#6b7280" }}>
+        Plan: FREE
+      </Typography>
 
       {/* Right */}
       <Button
