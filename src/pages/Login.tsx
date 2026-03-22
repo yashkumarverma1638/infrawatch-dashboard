@@ -48,7 +48,7 @@ function Login() {
       const res = await API.post("/auth/login", { email, password });
 
       localStorage.setItem("token", res.data.token);
-
+      localStorage.setItem("userId", res.data.user.id);
       navigate("/");
     } catch (err: any) {
       setErrors({ api: "Invalid credentials" });

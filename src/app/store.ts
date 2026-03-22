@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import monitorReducer from "../features/monitors/monitorSlice";
+import userReducer from "../features/user/userSlice";
 
 export const store = configureStore({
   reducer: {
     monitors: monitorReducer,
+    user: userReducer,
   },
 });
 

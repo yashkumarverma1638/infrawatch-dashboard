@@ -211,15 +211,19 @@ function Dashboard() {
                   <td>{item.url}</td>
 
                   <td>
-                    <span
-                      className={
-                        item.logs?.[0]?.status === "UP"
-                          ? "status up"
-                          : "status down"
-                      }
-                    >
-                      {item.logs?.[0]?.status}
-                    </span>
+                    {!item.logs?.length ? (
+                      <span className="status pending">Checking ⏳...</span>
+                    ) : (
+                      <span
+                        className={
+                          item.logs[0].status === "UP"
+                            ? "status up"
+                            : "status down"
+                        }
+                      >
+                        {item.logs[0].status}
+                      </span>
+                    )}
                   </td>
 
                   <td>{item.logs?.[0]?.responseTime ?? "-"} ms</td>

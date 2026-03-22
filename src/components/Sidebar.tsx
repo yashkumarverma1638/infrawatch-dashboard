@@ -9,6 +9,7 @@ const menu = [
   { name: "Dashboard", icon: <DashboardIcon />, path: "/" },
   { name: "Monitors", icon: <MonitorIcon />, path: "/" },
   { name: "Alerts", icon: <NotificationsIcon />, path: "/alerts" },
+  { name: "Subscription", icon: <SettingsIcon />, path: "/subscription" },
   { name: "Settings", icon: <SettingsIcon />, path: "/settings" },
 ];
 

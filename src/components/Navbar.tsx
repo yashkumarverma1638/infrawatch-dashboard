@@ -1,10 +1,12 @@
 import { Box, Typography, Button } from "@mui/material";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+  const { user } = useSelector((state: RootState) => state.user);
 
   return (
     <Box
@@ -20,8 +22,8 @@ function Navbar() {
     >
       {/* Left */}
       <Typography sx={{ fontWeight: 200 }}>Dashboard</Typography>
-      <Typography style={{ fontSize: "12px", color: "#6b7280" }}>
-        Plan: FREE
+      <Typography sx={{ fontSize: "12px", color: "#6b7280" }}>
+        Plan: {user?.plan || "FREE"}
       </Typography>
 
       {/* Right */}
