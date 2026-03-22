@@ -12,7 +12,35 @@ const monitorSlice = createSlice({
     monitors: [],
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    updateMonitorRealtime: (state, action) => {
+      const { urlId, status, responseTime } = action.payload;
+
+      const monitor = state.monitors.find((m) => m.id === urlId);
+
+      if (monitor) {
+        if (!monitor.logs) {
+          monitor.logs = [];
+        }
+
+        monitor.logs.unshift({
+          id: Date.now(),
+          urlId,
+          status,
+          responseTime,
+          checkedAt: new Date().toISOString(),
+        });
+
+        // keep only latest log
+        monitor.logs = monitor.logs.slice(0, 1);
+      }
+    },
+    removeMonitor: (state, action) => {
+      state.monitors = state.monitors.filter(
+        (monitor) => monitor.id !== action.payload,
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMonitors.pending, (state) => {
@@ -26,3 +54,4 @@ const monitorSlice = createSlice({
 });
 
 export default monitorSlice.reducer;
+export const { updateMonitorRealtime, removeMonitor } = monitorSlice.actions;
