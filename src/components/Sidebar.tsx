@@ -19,7 +19,7 @@ function Sidebar() {
   return (
     <Box
       sx={{
-        width: 240,
+        width: 220,
         height: "100vh",
         background: "linear-gradient(180deg, #0f172a, #1e293b)",
         color: "#fff",

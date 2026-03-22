@@ -11,10 +11,10 @@
 }
 .card {
   background: white;
-  padding: 20px;
+  padding: 18px 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  flex: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
 }
 
 .input {
@@ -26,12 +26,18 @@
 }
 
 .btn {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
   color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.3);
 }
 
 .table {
@@ -41,25 +47,24 @@
 
 .table th {
   text-align: left;
+  font-size: 13px;
+  color: #64748b;
   padding: 12px;
-  border-bottom: 1px solid #eee;
 }
 
 .table td {
-  padding: 12px;
-  border-bottom: 1px solid #f1f1f1;
+  padding: 14px 12px;
+  border-top: 1px solid #e5e7eb;
 }
 
 .table tr:hover {
   background: #f9fafb;
-  cursor: pointer;
 }
-
 .status {
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .status.up {
@@ -83,6 +88,6 @@
   background: white;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   flex: 1;
 }

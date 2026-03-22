@@ -1,20 +1,37 @@
 import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 function Layout({ children }: any) {
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      {/* Sidebar */}
+      <div style={{ width: "240px", flexShrink: 0 }}>
+        <Sidebar />
+      </div>
 
+      {/* Main Content */}
       <div
         style={{
-          marginLeft: 240,
-          padding: "20px",
-          width: "100%",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
           background: "#f1f5f9",
-          minHeight: "100vh",
         }}
       >
-        {children}
+        {/* Navbar */}
+        <Navbar />
+
+        {/* Page Content */}
+        <div
+          style={{
+            padding: "30px",
+            maxWidth: "1500px",
+            margin: "0 auto",
+            width: "100%",
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

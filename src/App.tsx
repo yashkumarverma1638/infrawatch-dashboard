@@ -4,9 +4,11 @@ import MonitorDetails from "./pages/MonitorDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Layout from "./components/Layout";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <div>
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           {/* Public Routes */}
