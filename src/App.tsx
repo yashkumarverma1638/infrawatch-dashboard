@@ -12,6 +12,8 @@ import Subscription from "./pages/Subscription";
 import Alerts from "./pages/Alerts";
 import { socket } from "../src/socket/socket.js";
 import Success from "./pages/Success";
+import NotificationSettings from "./pages/settings/NotificationSettings.js";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -78,7 +80,16 @@ function App() {
             }
           />
           <Route path="/success" element={<Success />} />
+          <Route
+            path="/settings/notifications"
+            element={
+              <Layout>
+                <NotificationSettings />
+              </Layout>
+            }
+          />
         </Routes>
+        <ToastContainer position="top-right" autoClose={3000} theme="colored" />
       </BrowserRouter>
     </div>
   );
