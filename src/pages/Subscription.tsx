@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import API from "../api/api";
 import { fetchUser } from "../features/user/userSlice";
 import type { RootState, AppDispatch } from "../app/store";
@@ -8,21 +9,35 @@ function Subscription() {
   const dispatch = useDispatch<AppDispatch>();
   const { user } = useSelector((state: RootState) => state.user);
 
+  const [loading, setLoading] = useState(false);
+
+  // 🔥 Stripe upgrade
   const upgrade = async () => {
     try {
-      await API.post("/user/upgrade");
+      setLoading(true);
 
-      toast.success("Upgraded to PRO 🚀");
-      dispatch(fetchUser());
-    } catch {
-      toast.error("Upgrade failed ❌");
+      const res = await API.post("/payments/create-checkout-session");
+
+      // redirect to Stripe checkout
+      window.location.href = res.data.url;
+    } catch (err) {
+      toast.error("Payment failed ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div style={{ padding: "30px" }}>
-      <h2 style={{ marginBottom: "20px" }}>Choose Your Plan</h2>
+      {/* Header */}
+      <div style={{ marginBottom: "25px" }}>
+        <h2 style={{ margin: 0 }}>Subscription</h2>
+        <p style={{ color: "#6b7280" }}>
+          Upgrade your plan to unlock more features 🚀
+        </p>
+      </div>
 
+      {/* Plans */}
       <div
         style={{
           display: "grid",
@@ -33,37 +48,75 @@ function Subscription() {
         {/* FREE PLAN */}
         <div className="card">
           <h3>FREE</h3>
-          <p>₹0 / month</p>
+          <p style={{ fontSize: "20px", fontWeight: 600 }}>₹0 / month</p>
 
           <ul>
             <li>✔ 3 Monitors</li>
             <li>✔ Basic Monitoring</li>
-            <li>✔ Email Support</li>
+            <li>✔ Email Alerts</li>
           </ul>
 
-          <button disabled className="btn" style={{ marginTop: "10px" }}>
-            Current Plan
-          </button>
+          {user?.plan === "FREE" && (
+            <button
+              disabled
+              className="btn"
+              style={{ marginTop: "10px", opacity: 0.7 }}
+            >
+              Current Plan
+            </button>
+          )}
         </div>
 
         {/* PRO PLAN */}
-        <div className="card" style={{ border: "2px solid #6366f1" }}>
+        <div
+          className="card"
+          style={{
+            border: "2px solid #6366f1",
+            position: "relative",
+          }}
+        >
+          {/* Badge */}
+          <span
+            style={{
+              position: "absolute",
+              top: "-10px",
+              right: "10px",
+              background: "#6366f1",
+              color: "#fff",
+              padding: "4px 10px",
+              borderRadius: "10px",
+              fontSize: "12px",
+            }}
+          >
+            Popular
+          </span>
+
           <h3>PRO 🚀</h3>
-          <p>₹299 / month</p>
+          <p style={{ fontSize: "20px", fontWeight: 600 }}>₹299 / month</p>
 
           <ul>
             <li>✔ 50 Monitors</li>
             <li>✔ Faster Checks</li>
             <li>✔ Priority Support</li>
+            <li>✔ Email Alerts</li>
           </ul>
 
           {user?.plan === "PRO" ? (
-            <button disabled className="btn" style={{ marginTop: "10px" }}>
+            <button
+              disabled
+              className="btn"
+              style={{ marginTop: "10px", opacity: 0.7 }}
+            >
               Current Plan
             </button>
           ) : (
-            <button className="btn" onClick={upgrade}>
-              Upgrade Now
+            <button
+              className="btn"
+              onClick={upgrade}
+              disabled={loading}
+              style={{ marginTop: "10px" }}
+            >
+              {loading ? "Redirecting..." : "Upgrade Now"}
             </button>
           )}
         </div>

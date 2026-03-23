@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import Subscription from "./pages/Subscription";
 import Alerts from "./pages/Alerts";
 import { socket } from "../src/socket/socket.js";
-
+import Success from "./pages/Success";
 function App() {
   const dispatch = useDispatch();
 
@@ -77,6 +77,7 @@ function App() {
               </Layout>
             }
           />
+          <Route path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </div>
