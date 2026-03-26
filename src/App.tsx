@@ -13,6 +13,7 @@ import Alerts from "./pages/Alerts";
 import { socket } from "../src/socket/socket.js";
 import Success from "./pages/Success";
 import NotificationSettings from "./pages/settings/NotificationSettings.js";
+import Profile from "./pages/settings/Profile.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -85,6 +86,14 @@ function App() {
             element={
               <Layout>
                 <NotificationSettings />
+              </Layout>
+            }
+          />
+          <Route
+            path="/settings/profile"
+            element={
+              <Layout>
+                <Profile />
               </Layout>
             }
           />

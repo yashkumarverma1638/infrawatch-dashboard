@@ -11,16 +11,15 @@ import { useState } from "react";
 
 const menu = [
   { name: "Dashboard", icon: <DashboardIcon />, path: "/" },
-  { name: "Monitors", icon: <MonitorIcon />, path: "/monitors" },
   { name: "Alerts", icon: <NotificationsIcon />, path: "/alerts" },
   { name: "Subscription", icon: <SettingsIcon />, path: "/subscription" },
 ];
 
 const settingsMenu = [
   { name: "Profile", path: "/settings/profile" },
-  { name: "Security", path: "/settings/security" },
+  // { name: "Security", path: "/settings/security" },
   { name: "Notifications", path: "/settings/notifications" },
-  { name: "Billing", path: "/settings/billing" },
+  // { name: "Billing", path: "/settings/billing" },
 ];
 
 function Sidebar() {
