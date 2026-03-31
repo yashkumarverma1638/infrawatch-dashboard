@@ -14,6 +14,8 @@ import { socket } from "../src/socket/socket.js";
 import Success from "./pages/Success";
 import NotificationSettings from "./pages/settings/NotificationSettings.js";
 import Profile from "./pages/settings/Profile.js";
+import ForgotPassword from "./pages/ForgotPassword.js";
+import ResetPassword from "./pages/ResetPassword.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -97,6 +99,8 @@ function App() {
               </Layout>
             }
           />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} theme="colored" />
       </BrowserRouter>
